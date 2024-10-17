@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modal</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: lightgray;
+  font-family: sans-serif;
+
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+
+}
+#modal-open {
+  font-size: 2rem;
+  padding: 0.5em 2em;
+
+  border: 0;
+  border-radius: 8px;
+
+  background-color: #333;
+  color: #ddd;
+}
+
+/* ????????????????????? */
+.modal-container.modal-show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+  opacity: 0;
+  pointer-events: none;
+
+  /* display: none; */
+  z-index: 9;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* overflow: auto; */
+  background-color: rgba(0, 0, 0, 0.3);
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    border-radius: 8px;
+    padding: 1rem;
+
+    background-color: #fff;
+    /* margin: 0 auto; */
+        
+    width: 300px;
+    height: 200px;
+    max-width: 100%;
+    text-align: center;
+
+    #modal-close {
+      padding: 0.5em 1em;
+      color: #333;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
+
+}
+
+
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1>Alerts/Modals</h1>
+</header>
+<main>
+
+
+  <button id="modal-open">Open Modal</button>
+
+  <div class="modal-container" id="modal-container">
+    <div class="modal">
+      <h3>Modal Heading</h3>
+      <p>Modal Text! Alert style</p>
+      <button id="modal-close">Close</button>
+    </div>
+  </div>
+
+
+
+
+</main>
+<footer>
+  <p>&copy;2024 Tanaka Prodictions</p>
+</footer>
+
+<script>
+
+  var modal_container = document.getElementById('modal-container')
+  var btn_open = document.getElementById('modal-open')
+  var btn_close = document.getElementById('modal-close')
+
+  btn_open.onclick = () => {
+    modal_container.classList.add('modal-show')
+  }
+
+  btn_close.onclick = () => {
+    modal_container.classList.remove('modal-show')
+  }
+  
+  // btn_open.addEventListener('click', () => {
+  //   modal_container.classList.add('modal-show')
+  // })
+
+  // btn_close.addEventListener('click', () => {
+  //   modal_container.classList.remove('modal-show')
+  // })
+
+
+  // span.onclick = (event) => {
+  //   modal.style.display = 'none'
+  // }
+  // window.onclick = (event) => {
+  //   if (event.target == modal) {
+  //     modal.style.display = 'none'
+  //   }
+  // }
+    
+</script>
+
+</body>
+</html>

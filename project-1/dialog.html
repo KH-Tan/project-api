@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dialog</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+
+}
+body {
+  background-color: #fff;
+  font-size: 1rem;
+
+  header {
+    background-color: #333;
+    color: #eee;
+    min-height: 12vh;
+  }
+  main {
+    background-color: #ddd;
+    color: #333;
+    min-height: 80vh;
+
+  }
+  footer {
+    background-color: #555;
+    color: #eee;
+    min-height: 8vh;
+  }
+}
+
+[data-dialog-open], [data-dialog-close],
+.dialog-open, .dialog-close {
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.5em 1em;
+
+  border: 0;
+  border-radius: 8px;
+
+  background-color: #333;
+  color: #eee;
+}
+
+
+[data-dialog-modal] {
+  background-color: #eee;
+  color: #222;
+  border: 1px solid #bbb;
+  border-radius: 1rem;
+
+  /* margin: auto; */
+  margin-inline: auto;
+  margin-top: 25vh;
+
+  max-width: 40ch;
+  padding: 1.5rem;
+
+  text-align: center;
+  user-select: none;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.85rem;
+  }
+  button {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  & > * {
+    margin-bottom: 1.25rem;
+  }
+  &::backdrop {
+    background: skyblue;
+    opacity: 0.75;
+  }
+}
+
+#dialog-Notmodal {
+  background-color: skyblue;
+  color: #222;
+  border: 1px solid #bbb;
+
+  margin-inline: auto;
+  margin-top: 0;
+
+  max-width: 30ch;
+  padding: 1.5rem;
+
+  text-align: center;
+  user-select: none;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.85rem;
+  }
+  button {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  & > * {
+    margin-bottom: 1.25rem;
+  }
+
+}
+
+#popover-1-open {
+  anchor-name: --open-btn;
+}
+
+#popover-1 {
+  
+  background-color: skyblue;
+  color: #222;
+  border: 1px solid #bbb;
+
+  /* margin-left: 50vw; */
+  /* margin-top: 25vh; */
+  /* margin: auto; */
+
+  max-width: 30ch;
+  padding: 1.5rem;
+
+  text-align: center;
+  user-select: none;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.85rem;
+  }
+  button {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  & > * {
+    margin-bottom: 1.25rem;
+  }
+
+}
+
+/* [popover] {
+  inset: unset;
+  bottom: anchor(top);
+  left: anchor(center);
+  translate: -50%;
+} */
+/* 
+[popovertarget="popover-1"] {
+  anchor-name: "popover-1-open";
+} */
+
+
+</style>
+
+</head>
+<body>
+<header>
+  <h1>Dialog (Modals?)</h1>
+</header>
+<main>
+
+
+  <section>
+    <h2>Dialog Modals the new way</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit voluptatum ipsum, soluta rerum eius tempora magni quibusdam ipsa molestiae, sed velit distinctio minus unde corporis.</p>
+    
+    <button data-dialog-open>Open Dialog (modal)</button>
+    <dialog data-dialog-modal>
+      <h3>Using modal dialog!</h3>
+
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel neque vero hic sequi quia, cumque, sint ducimus facilis reprehenderit quasi quo, ab cum? Exercitationem, perferendis?</p>
+
+      <button data-dialog-close>Close Dialog</button>
+    </dialog>
+
+  </section>
+
+  <section>
+    <h2>Dialog NOT Modals the new way</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit voluptatum ipsum, soluta rerum eius tempora magni quibusdam ipsa molestiae, sed velit distinctio minus unde corporis.</p>
+    
+    <button class="dialog-open" id="dialog-Notmodal-open">Open Dialog</button>
+    <dialog id="dialog-Notmodal">
+      <h3>Using just dialog!</h3>
+
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel neque vero hic sequi quia, cumque, sint ducimus facilis reprehenderit quasi quo, ab cum? Exercitationem, perferendis?</p>
+
+      <button class="dialog-close" id="dialog-Notmodal-close">Close Dialog</button>
+    </dialog>
+
+  </section>
+
+  <section>
+    <h2>Popover API</h2>
+    <p>Javascript not required</p>
+    <p>Click outside (or Esc) to dismiss</p>
+
+    <!-- popover="auto"|"manual" -->
+    <!-- anchor="popover-1-open" -->
+    <div popover="auto" id="popover-1">
+      <h3>Popover Heading</h3>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel neque vero hic sequi quia, cumque, sint ducimus facilis reprehenderit quasi quo, ab cum? Exercitationem, perferendis?</p>
+    </div>
+
+    <!-- popovertargetaction="toggle"|"show"|"hide" -->
+    <button id="popover-1-open"
+            popovertarget="popover-1"
+            
+    >
+      Open Popover
+    </button>
+<!-- popovertargetaction="toggle" -->
+
+  </section>
+
+  <section>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam ut sint culpa tempora animi nobis deserunt ad quod excepturi reprehenderit laborum, in eum velit cupiditate distinctio ratione ipsam voluptatem nam similique necessitatibus id ea. Impedit id labore nobis, asperiores nisi minima voluptatem quisquam debitis dolorem sint. Ad, cumque tempore?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam ut sint culpa tempora animi nobis deserunt ad quod excepturi reprehenderit laborum, in eum velit cupiditate distinctio ratione ipsam voluptatem nam similique necessitatibus id ea. Impedit id labore nobis, asperiores nisi minima voluptatem quisquam debitis dolorem sint. Ad, cumque tempore?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam ut sint culpa tempora animi nobis deserunt ad quod excepturi reprehenderit laborum, in eum velit cupiditate distinctio ratione ipsam voluptatem nam similique necessitatibus id ea. Impedit id labore nobis, asperiores nisi minima voluptatem quisquam debitis dolorem sint. Ad, cumque tempore?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam ut sint culpa tempora animi nobis deserunt ad quod excepturi reprehenderit laborum, in eum velit cupiditate distinctio ratione ipsam voluptatem nam similique necessitatibus id ea. Impedit id labore nobis, asperiores nisi minima voluptatem quisquam debitis dolorem sint. Ad, cumque tempore?</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quibusdam ut sint culpa tempora animi nobis deserunt ad quod excepturi reprehenderit laborum, in eum velit cupiditate distinctio ratione ipsam voluptatem nam similique necessitatibus id ea. Impedit id labore nobis, asperiores nisi minima voluptatem quisquam debitis dolorem sint. Ad, cumque tempore?</p>
+  </section>
+
+
+</main>
+<footer>
+  <p>&copy;2024 Tanaka Prodictions</p>
+</footer>
+
+<script>
+
+  var dialogNotModal = document.getElementById('dialog-Notmodal')
+  var dialogNotModalOpen = document.getElementById('dialog-Notmodal-open')
+  var dialogNotModalClose = document.getElementById('dialog-Notmodal-close')
+
+
+  var dialogModal = document.querySelector('[data-dialog-modal]')
+  var dialogOpen = document.querySelector('[data-dialog-open]')
+  var dialogClose = document.querySelector('[data-dialog-close]')
+
+
+
+  dialogNotModalOpen.onclick = ()=>{
+    dialogNotModal.show()
+  }
+  dialogNotModalClose.onclick = ()=>{
+    dialogNotModal.close()
+  }
+
+  dialogOpen.onclick = ()=>{
+    dialogModal.showModal()
+  }
+
+  dialogClose.onclick = ()=>{
+    dialogModal.close()
+  }
+  
+</script>
+
+</body>
+</html>
